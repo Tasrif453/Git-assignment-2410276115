@@ -1,40 +1,40 @@
 #include <stdio.h>
 
 int main() {
-    int n, s, i, j;
-    int a[10][10], t[10], big = 0, k;
-    char name[10][20];
+    int studentCount, subjectCount;
+    int marks[10][10], total[10], highestTotal = 0, topperIndex;
+    char studentNames[10][20];
 
     printf("Enter number of students: ");
-    scanf("%d", &n);
+    scanf("%d", &studentCount);
     printf("Enter number of subjects: ");
-    scanf("%d", &s);
+    scanf("%d", &subjectCount);
 
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < studentCount; i++) {
         printf("Enter name: ");
-        scanf("%s", name[i]);
-        for (j = 0; j < s; j++) {
-            scanf("%d", &a[i][j]);
+        scanf("%s", studentNames[i]);
+        for (int j = 0; j < subjectCount; j++) {
+            scanf("%d", &marks[i][j]);
         }
     }
 
-    for (i = 0; i < n; i++) {
-        t[i] = 0;
-        for (j = 0; j < s; j++) {
-            t[i] = t[i] + a[i][j];
+    for (int i = 0; i < studentCount; i++) {
+        total[i] = 0;
+        for (int j = 0; j < subjectCount; j++) {
+            total[i] += marks[i][j];
         }
     }
 
-    for (i = 0; i < n; i++) {
-        if (t[i] > big) {
-            big = t[i];
-            k = i;
+    for (int i = 0; i < studentCount; i++) {
+        if (total[i] > highestTotal) {
+            highestTotal = total[i];
+            topperIndex = i;
         }
     }
 
-    for (i = 0; i < n; i++) {
-        printf("%s %d\n", name[i], t[i]);
+    for (int i = 0; i < studentCount; i++) {
+        printf("%s %d\n", studentNames[i], total[i]);
     }
 
-    printf("Topper: %s\n", name[k]);
+    printf("Topper: %s\n", studentNames[topperIndex]);
 }
